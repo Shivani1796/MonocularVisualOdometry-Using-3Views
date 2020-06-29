@@ -1,8 +1,10 @@
+> **Credit:** *Shivani Baldwa, Raghav Jethliya, under the guidance of Professor Chuang-Jan-Chang from Ming Chi University of Technology, New Taipei City*
+
 ## Odometry using MOIL LIBRARY genrating 3 View 
 
-We used approach designed in MOIL-Lab ,  “MOIL SDK- MCUT Omnidirectional Imaging Lab” to extricate the fisheye picture into 6 diverse view as: Front, Left, Right, Down, Lower left, Lower right separately. By utilizing this technique, we made a direction of 6 view by  the arrangement of fisheye pictures as a source document for odometry.​
+We used approach designed in MOIL-Lab ,  “MOIL SDK- MCUT Omnidirectional Imaging Lab” to extricate the fisheye picture into 6 diverse view as: Front, Left, Right respectively. By utilizing this technique, we made a trajectory of 3 view by  the arrangement of fisheye pictures as a source document for odometry.
 
- It means we use source fisheye images and integrate that with MOIL Library and generate 6-view odometry.
+It means we use source fisheye images and integrate that with MOIL Library and generate 6-view odometry.
 
 **Calibration Parameter T265 CAMERA:** 
 
@@ -19,6 +21,8 @@ Center or Principle point: (427, 394)
 			0, 0, -24.964, 38.2, -16.956, 183.42 //calibration
 	);
 ```
+## Download the MOIL dataset: https://bit.ly/31ph49X 
+
 ## HOW TO RUN ON TERMINAL
 
 Step 1.Open Terminal 
@@ -42,25 +46,29 @@ Step 4.Run command
 	
 ```
 **DESCRIPTION:**
-
+```
 Argument 1: Ground Truth Data (/home/shivani/Documents/mydataset/D5_17-04/poses/D5.txt)
+
 Argument 2: Image sequence  (/home/shivani/Documents/fisheye-test-images/D5/%d.png)
+
 Argument 3: Zoom Factor (3.4)
+
 Argument 4: Front View angle 
+
 Argument 5: Left View angle
+
 Argument 6: Right View angle
+```
 
  **NOTE**
 - Change img_path and pose_path to correct image sequences and pose file paths according to your system.
 - Ensure focal length and principal point information is correct .
 ---------------------------------------------------------------------------------------------------------------------------
-
 ## HOW TO RUN ON ECLIPSE
 
 Please follow the below url to understand how to clone poject on Eclipse
 
-https://bit.ly/31ph49X
-
+https://bit.ly/31xTkjU
 ---------------------------------------------------------------------------------------------------------------------------
 
 ## Odometry using Round Path
@@ -70,12 +78,10 @@ https://bit.ly/31ph49X
 </p>
 
 
-
-## Odometry using long path
+## Odometry using Long path
 <p align="center">
   <img src="https://github.com/Shivani1796/FinalCode-MVO-/blob/master/img/result2.png">
 </p>
-
 
 
 ## Odometry using Straight Path
