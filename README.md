@@ -1,3 +1,5 @@
+> **Credit:** *Shivani Baldwa, Raghav Jethliya, under the guidance of Professor Chuang-Jan-Chang from Ming Chi University of Technology, New Taipei City*
+
 ## Odometry using ORB, BRIEF Descriptors algorithm to show feature matching and detection in an image.
 
 **Calibration Parameter T265 CAMERA:** 
@@ -15,17 +17,19 @@ Center or Principle point: (427, 394)
 			0, 0, -24.964, 38.2, -16.956, 183.42 //calibration
 	);
 ```
+## Download the MOIL dataset: https://bit.ly/31ph49X 
 
 ## HOW TO RUN ON ECLIPSE
 
 Please follow the below url to understand how to clone poject on Eclipse
 
-https://bit.ly/31ph49X
+https://bit.ly/31xTkjU
 
 **NOTE: Remember to checkout the branch which you want to run**
+---------------------------------------------------------------------------------------------------------------------------
 	
 **DESCRIPTION:**
-
+```
 Argument 1: Ground Truth Data (/home/shivani/Documents/mydataset/D5_17-04/poses/D5.txt)
 
 Argument 2: Image sequence  (/home/shivani/Documents/fisheye-test-images/D5/%d.png)
@@ -37,6 +41,7 @@ Argument 4: Front View angle
 Argument 5: Left View angle
 
 Argument 6: Right View angle
+```````
 
  **NOTE**
 - Change img_path and pose_path to correct image sequences and pose file paths according to your system.
