@@ -21,7 +21,7 @@ Center or Principle point: (427, 394)
 			0, 0, -24.964, 38.2, -16.956, 183.42 //calibration
 	);
 ```
-## Download the MOIL dataset: https://bit.ly/31ph49X 
+## Download the MOIL dataset: https://bit.ly/2BjAYZr
 
 ## HOW TO RUN ON TERMINAL
 
@@ -68,7 +68,7 @@ Argument 6: Right View angle
 
 Please follow the below url to understand how to clone poject on Eclipse
 
-https://bit.ly/31xTkjU
+https://bit.ly/3eLsatG
 ---------------------------------------------------------------------------------------------------------------------------
 
 ## Odometry using Round Path
