@@ -5,6 +5,7 @@ Guidance by- Professor Chuang Jan Chang from MCUT Taiwan
  */
 
 #include "opencv2/video/tracking.hpp"
+#include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/features2d/features2d.hpp"
@@ -22,8 +23,8 @@ Guidance by- Professor Chuang Jan Chang from MCUT Taiwan
 
 using namespace cv;
 using namespace std;
-bool renderFeatures = false ;
-class mono_vo 
+
+class mono_vo
 {
 
 public:
@@ -32,10 +33,12 @@ public:
 	void featureTracking(Mat img_1, Mat img_2, vector<Point2f>& points1, vector<Point2f>& points2, vector<uchar>& status);
 	void featureDetection(Mat img_1, vector<Point2f>& points1);
 	void init(Point txtPos, Point trajPos, Scalar color, double trajscale);
-	void runOneFrame(Mat Frame, Mat Traj);
+	void runOneFrame(Mat Frame, Mat Traj,int count);
 	int runAll();
-	~mono_vo();
+	void FeatureExtraction(Mat img_1 , Mat img_2, int check);
 
+	~mono_vo();
+	//	vector<Point2f> prevFeatures, currFeatures;
 private:    
 
 	string Name;
@@ -45,6 +48,7 @@ private:
 	Mat R_f, t_f;
 	double scale;
 	char text[100];
+
 	char Z[100];
 	char Frontview[100];
 	char Leftview[100];
@@ -53,7 +57,6 @@ private:
 	String text2 = "Red color: Front View";
 	String text3 = "Green color: Left View";
 	String text4 = "Blue color: Right View";
-
 	int fontFace = FONT_HERSHEY_PLAIN;
 	double fontScale = 1;
 	int thickness = 1;
@@ -72,5 +75,4 @@ private:
 	char filename[100];
 
 };
-
 
