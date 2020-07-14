@@ -27,6 +27,7 @@ double zoom;
 /*
  * @param name
  */
+// Define coordinates points to show text on trajectory window.
 mono_vo::mono_vo(string name){
 	Name = name;
 	textOrg = Point(10, 50);
@@ -52,10 +53,11 @@ mono_vo::mono_vo(string name){
  * @param z_cal
  * @return
  */
+// This function help in calculating the scale value.
 double mono_vo::getAbsoluteScale(int frame_id, int sequence_id, double z_cal)	{
 	string line;
 	int i = 0;
-	ifstream myfile (groundtruth_location.c_str());
+	ifstream myfile (groundtruth_location.c_str());  // Read the ground truth/pose data.
 	double x =0, y=0, z = 0;
 	double x_prev, y_prev, z_prev;
 	if (myfile.is_open())
@@ -118,8 +120,9 @@ void mono_vo::featureTracking(Mat img_1, Mat img_2, vector<Point2f>& points1, ve
  * @param img_1
  * @param points1
  */
-void mono_vo::featureDetection(Mat img_1, vector<Point2f>& points1)	{   //uses FAST as of now, modify parameters as necessary
+ // Uses FAST algorithm as of now, modify parameters as necessary.
 
+void mono_vo::featureDetection(Mat img_1, vector<Point2f>& points1)	{  
 	vector<KeyPoint> keypoints_1;
 	int fast_threshold =20.5;
 	bool nonmaxSuppression = true;
@@ -152,8 +155,8 @@ void mono_vo::runOneFrame(Mat Frame, Mat outputTraj) {
 	else if( numFrame == 1 )
 	{
 		cvtColor(Frame, img_2, COLOR_BGR2GRAY);
-		featureDetection(img_1, points1);
-		featureTracking(img_1, img_2, points1, points2, status);
+		featureDetection(img_1, points1);			// detect features in img_1
+		featureTracking(img_1, img_2, points1, points2, status);	// track those features to img_2
 		E = findEssentialMat(points2, points1, focal, pp, RANSAC, 0.999, 1.0, mask);
 		recoverPose(E, points2, points1, R, t, focal, pp, mask);
 		prevImage = img_2;
@@ -264,7 +267,8 @@ int mono_vo::runAll() {
 		Mat prevPts(2,prevFeatures.size(), CV_64F), currPts(2,currFeatures.size(), CV_64F);
 
 		for(int i=0;i<prevFeatures.size();i++)	
-		{   //this (x,y) combination makes sense as observed from the source code of triangulatePoints on GitHub
+		{   
+			//this (x,y) combination makes sense as observed from the source code of triangulatePoints on GitHub
 			prevPts.at<double>(0,i) = prevFeatures.at(i).x;
 			prevPts.at<double>(1,i) = prevFeatures.at(i).y;
 			currPts.at<double>(0,i) = currFeatures.at(i).x;
@@ -272,7 +276,8 @@ int mono_vo::runAll() {
 		}
 
 		scale = getAbsoluteScale(numFrame, 0, t.at<double>(2));
-
+		
+// Calculation for SCALE ESTIMATION
 
 		if ((scale>0.15)&&(t.at<double>(2) > t.at<double>(0)) && (t.at<double>(2) > t.at<double>(1))) 
 		{	//FORMULAAA
@@ -316,6 +321,7 @@ int mono_vo::runAll() {
  * @param frame_id
  * @return
  */
+// To calculate ground truth data 
 Point2f getGroundTruth(string filename, int frame_id)	{
 	string line;
 	int i = 0;
@@ -348,11 +354,12 @@ void multi_vo()	{
 	Mat Traj = Mat::zeros(1080, 610, CV_8UC3);
 	int w = 848, h = 800;
 	double m_ratio;
-
-	md->Config("car", 3, 3,
-			427,394, 1, //center
-			848, 800, 1.68, // resolution
-			0, 0, -24.964, 38.2, -16.956, 183.42 //calibration
+// Each fisheye camera can be calibrated and derives a set of parameters by MOIL laboratory, before the successive functions can work correctly, configuration is necessary in the beginning of program.
+	
+	md->Config("car", 3, 3,    // Camera name "Intel RealSense T265" , Camera sensor width (cm),  Camera Sensor Height (cm)
+			427,394, 1, //image center X coordinate(pixel), image center Y coordinate(pixel), i_ratio : Sensor pixel aspect ratio.
+			848, 800, 1.68, // Input image width,  Input image height, calibrationRatio : input image with/ calibration image width
+			0, 0, -24.964, 38.2, -16.956, 183.42 // calibration parameters
 	);
 
 
@@ -366,6 +373,8 @@ void multi_vo()	{
 		image_result[i] = Mat(h, w, CV_32F);
 	}
 	//double zoom = 3.8;
+// AnyPointM(): To generate a pair of X-Y Maps for the specified alpha, beta and zoom parameters, the result X-Y Maps can be used later to remap the original fisheye image to the target angle image.
+
 	md->AnyPointM2((float*) mapX[0].data, (float*) mapY[0].data, mapX[0].cols,
 			mapX[0].rows, all_angles[0], all_angles[1], zoom, m_ratio); 			// front view
 	md->AnyPointM2((float*) mapX[1].data, (float*) mapY[1].data, mapX[1].cols,
@@ -452,7 +461,9 @@ void multi_vo()	{
 		}
 
 		cout << "For closing program, please press 'esc'  OR to pause program please press 'Z'-- !!!within one second !!!"<<endl;
-
+		
+// The below code is to stop the program flow in between by pressing a key.
+		
 		char c = waitKey(30);
 		if (c == 27) {  							// 27 is equal to esc
 			isExit = true;
@@ -485,23 +496,23 @@ void multi_vo()	{
 int main( int argc, char** argv )	
 {
 
-	groundtruth_location = argv[1];
-	filename_format = argv[2];
-	string zoom_factor;
-	zoom_factor = argv[3];
+	groundtruth_location = argv[1];  // Argument 1 : Ground Truth Data (pose data)
+	filename_format = argv[2];	// Argument 2: Image Sequence
+	string zoom_factor;	
+	zoom_factor = argv[3];		// Argument 3: zoom factor
 	
 	zoom = atof(zoom_factor.c_str());
 	cout<<"print value of zoom  " << zoom <<endl;
 	int i=0;
-	for( int idx=4; idx<argc; idx++)
+	for( int idx=4; idx<argc; idx++)  // Argument for giving a specified view angle for trajectory
 	{
 		char * angles= argv[idx];
-		char *angle= strtok (angles,  ",");
+		char *angle= strtok (angles,  ","); 	// strtok() function takes two arguments: str and delim. This function finds the token in the string pointed to by strtok . 
 
 		while (angle!=  NULL)
 		{
 			string s=angle;
-			all_angles[i++]= atof(s.c_str());
+			all_angles[i++]= atof(s.c_str());  // atof() function in C++ interprets the contents of a string as a floating point number and return its value as a double.
 
 			angle=strtok(NULL, ",");
 		}
