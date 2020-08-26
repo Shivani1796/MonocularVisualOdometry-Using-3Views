@@ -1,11 +1,13 @@
 > **Credit:** *Shivani Baldwa, Raghav Jethliya, under the guidance of Professor Chuang-Jan-Chang from Ming Chi University of Technology, New Taipei City*
 
-## Odometry using MOIL LIBRARY genrating 3 View 
+## Odometry using MOIL LIBRARY genrating 3 Views 
 
 We used approach designed in MOIL-Lab ,  “MOIL SDK- MCUT Omnidirectional Imaging Lab” to extricate the fisheye picture into 6 diverse view as: Front, Left, Right respectively. By utilizing this technique, we made a trajectory of 3 view by  the arrangement of fisheye pictures as a source document for odometry.
 
 It means we use source fisheye images and integrate that with MOIL Library and generate 6-view odometry.
 Before we start this project, we have referred the AVI SINGH blogs and github https://github.com/avisingh599/mono-vo. So, this can be a referenced code before starting monocular visual odometry.
+
+**Watch this video for more understanding !!!! (*Click on below image*)**
 
 [![Watch this video](https://github.com/Shivani1796/MonocularVisualOdometry-Using-3Views/blob/master/images/Monocular-Visual-Odomertry-Using-Three-Views.jpg)](https://www.youtube.com/embed/dGPUH05CyqU)
 
