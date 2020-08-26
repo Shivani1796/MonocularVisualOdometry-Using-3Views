@@ -79,19 +79,19 @@ https://bit.ly/3eLsatG
 ## Odometry using Round Path
 
 <p align="center">
-  <img src="https://github.com/Shivani1796/FinalCode-MVO-/blob/master/img/result1%20.png">
+  <img src="https://github.com/Shivani1796/MonocularVisualOdometry-Using-3Views/blob/master/images/result1%20.png">
 </p>
 
 
 ## Odometry using Long path
 <p align="center">
-  <img src="https://github.com/Shivani1796/FinalCode-MVO-/blob/master/img/result2.png">
+  <img src="https://github.com/Shivani1796/MonocularVisualOdometry-Using-3Views/blob/master/images/result2.png">
 </p>
 
 
 ## Odometry using Straight Path
 <p align="center">
-  <img src="https://github.com/Shivani1796/FinalCode-MVO-/blob/master/img/result3.png">
+  <img src="https://github.com/Shivani1796/MonocularVisualOdometry-Using-3Views/blob/master/images/result3.png">
 </p>
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
