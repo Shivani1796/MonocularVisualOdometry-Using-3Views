@@ -5,6 +5,7 @@
 We used approach designed in MOIL-Lab ,  “MOIL SDK- MCUT Omnidirectional Imaging Lab” to extricate the fisheye picture into 6 diverse view as: Front, Left, Right respectively. By utilizing this technique, we made a trajectory of 3 view by  the arrangement of fisheye pictures as a source document for odometry.
 
 It means we use source fisheye images and integrate that with MOIL Library and generate 6-view odometry.
+Before we start this project, we have referred the AVI SINGH blogs and github https://github.com/avisingh599/mono-vo. So, this can be a referenced code before starting monocular visual odometry.
 
 **Calibration Parameter T265 CAMERA:** 
 
