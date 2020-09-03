@@ -38,6 +38,22 @@ Step 2.
 ```
 git clone https://github.com/Shivani1796/MonocularVisualOdometry-Using-3Views.git
 ```
+*MOIL SDK DEPENDENCIES*
+
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential cmake pkg-config
+sudo apt install libjpeg-dev libpng-dev libtiff-dev
+sudo apt install software-properties-common
+sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+sudo apt update
+sudo apt install libjasper1 libjasper-dev
+sudo apt update
+sudo apt install libgtk-3-dev
+sudo apt install libatlas-base-dev gfortran
+sudo apt install libopencv-dev python-opencv
+```
 
 Step 3.Compile command
  ```
